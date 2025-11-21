@@ -1,0 +1,2 @@
+LED_display.c:10:6:turn_off	8	static
+LED_display.c:14:6:blinks_in_LED	16	static
