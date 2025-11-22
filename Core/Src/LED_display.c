@@ -11,11 +11,20 @@ void turn_off(){
 	HAL_GPIO_WritePin(A1_GPIO_Port, A1_Pin, RESET );
 	HAL_GPIO_WritePin(B1_GPIO_Port, B1_Pin, RESET );
 }
-void blinks_in_LED(int idx){
-	if (CheckButton(idx)){
+void LED_display_NS(int count){
+	    turn_off();
 		HAL_GPIO_WritePin(A1_GPIO_Port, A1_Pin, (count%2) ? SET : RESET );
 		HAL_GPIO_WritePin(B1_GPIO_Port, B1_Pin, (count/2) ? SET : RESET );
 		count++;
 		if (count >=4) count=0;
-	}
+
+}
+
+void LED_display_EW(int count){
+     	turn_off();
+		HAL_GPIO_WritePin(A2_GPIO_Port, A2_Pin, (count%2) ? SET : RESET );
+		HAL_GPIO_WritePin(B2_GPIO_Port, B2_Pin, (count/2) ? SET : RESET );
+		count++;
+		if (count >=4) count=0;
+
 }

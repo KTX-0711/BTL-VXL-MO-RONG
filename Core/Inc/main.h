@@ -37,6 +37,15 @@ extern "C" {
 #include <stdlib.h>
 #include "input_reading.h"
 #include "input_processing.h"
+#include "LED_display.h"
+#include "string.h"
+#include "i2c-lcd.h"
+#include "fsm_auto_mode.h"
+#include "fsm_config_mode.h"
+#include "fsm_manual_mode.h"
+#include "fsm_control_mode.h"
+#include "LCD_display.h"
+#include "fsm_reset_mode.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

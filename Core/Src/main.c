@@ -102,10 +102,8 @@ int main(void)
   //SCH_Add_Task(button_reading,0,10);
   //SCH_Add_Task(fsm_for_input_processing,0,10);
   //SCH_Add_Task(blinks_in_LED(0), 10, 500);
-  turn_off();
   while (1)
   {
-	  blinks_in_LED(0);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

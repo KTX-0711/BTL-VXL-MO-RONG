@@ -5,9 +5,12 @@
  *      Author: nguye
  */
 
+#include "main.h"
+
 #ifndef INC_LED_DISPLAY_H_
 #define INC_LED_DISPLAY_H_
-extern uint8_t count=0;
-void blinks_in_LED(int idx);
 
+void LED_display_NS(int count);
+void LED_display_EW(int count);
+void turn_off();
 #endif /* INC_LED_DISPLAY_H_ */
