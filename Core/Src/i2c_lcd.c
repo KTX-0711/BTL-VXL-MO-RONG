@@ -1,19 +1,10 @@
-/*
- * i2c-lcd.c
- *
- *  Created on: Nov 21, 2025
- *      Author: nguye
- */
-
-
 /**
 Edit by modify: Ngoc Hang
 **/
 
-#include "i2c-lcd.h"
-extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
-
-#define SLAVE_ADDRESS_LCD (0x21 << 1) // change this according to ur setup
+#include "i2c_lcd.h"
+extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly1
+#define SLAVE_ADDRESS_LCD (0x27 << 1) // change this according to ur setup
 
 void lcd_send_cmd (char cmd)
 {
@@ -58,7 +49,7 @@ void lcd_init (void) {
 	lcd_send_cmd (0x80);
 }
 
-void lcd_send_string (char *str)
+void lcd_send_string ( char *str)
 {
 	while (*str) lcd_send_data (*str++);
 }

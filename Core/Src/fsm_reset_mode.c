@@ -10,11 +10,10 @@ void run_Reset(){
 	if(State != RESET_MODE) {
 		return;
     }
-	if(CheckButton(3)){
 
-	  GREEN  = GREEN_ini;
-	  YELLOW = YELLOW_ini;
-   	  RED    = RED_ini;
-	}
-	State = AUTO_MODE;
+	if(CheckButton(3)){
+		//GREEN  = GREEN_ini;
+	 /// YELLOW = YELLOW_ini;
+   	 // RED    = RED_ini;
+}
 }

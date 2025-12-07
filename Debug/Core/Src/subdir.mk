@@ -5,8 +5,14 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/LCD_display.c \
 ../Core/Src/LED_display.c \
-../Core/Src/i2c-lcd.c \
+../Core/Src/fsm_auto_mode.c \
+../Core/Src/fsm_config_mode.c \
+../Core/Src/fsm_control_mode.c \
+../Core/Src/fsm_manual_mode.c \
+../Core/Src/fsm_reset_mode.c \
+../Core/Src/i2c_lcd.c \
 ../Core/Src/input_processing.c \
 ../Core/Src/input_reading.c \
 ../Core/Src/main.c \
@@ -18,8 +24,14 @@ C_SRCS += \
 ../Core/Src/system_stm32f1xx.c 
 
 OBJS += \
+./Core/Src/LCD_display.o \
 ./Core/Src/LED_display.o \
-./Core/Src/i2c-lcd.o \
+./Core/Src/fsm_auto_mode.o \
+./Core/Src/fsm_config_mode.o \
+./Core/Src/fsm_control_mode.o \
+./Core/Src/fsm_manual_mode.o \
+./Core/Src/fsm_reset_mode.o \
+./Core/Src/i2c_lcd.o \
 ./Core/Src/input_processing.o \
 ./Core/Src/input_reading.o \
 ./Core/Src/main.o \
@@ -31,8 +43,14 @@ OBJS += \
 ./Core/Src/system_stm32f1xx.o 
 
 C_DEPS += \
+./Core/Src/LCD_display.d \
 ./Core/Src/LED_display.d \
-./Core/Src/i2c-lcd.d \
+./Core/Src/fsm_auto_mode.d \
+./Core/Src/fsm_config_mode.d \
+./Core/Src/fsm_control_mode.d \
+./Core/Src/fsm_manual_mode.d \
+./Core/Src/fsm_reset_mode.d \
+./Core/Src/i2c_lcd.d \
 ./Core/Src/input_processing.d \
 ./Core/Src/input_reading.d \
 ./Core/Src/main.d \
@@ -46,5 +64,5 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Src/%.o: ../Core/Src/%.c Core/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 

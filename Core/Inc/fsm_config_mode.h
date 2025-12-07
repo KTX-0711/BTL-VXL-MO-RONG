@@ -9,7 +9,7 @@
 #define INC_FSM_CONFIG_MODE_H_
 
 #include "main.h"
-
-void run_Config(unsigned char color );
-
+extern uint8_t incre;
+void run_Config( );
+void signal_config();
 #endif /* INC_FSM_CONFIG_MODE_H_ */

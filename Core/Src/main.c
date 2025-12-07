@@ -22,7 +22,15 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+void input_process(){
 
+
+	input_processing(0);
+	input_processing(1);
+	input_processing(2);
+	input_processing(3);
+
+}
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,7 +93,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+	  SCH_Init();
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -93,21 +101,29 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim2);
-  SCH_Init();
+		HAL_TIM_Base_Start_IT(&htim2);
+	    SCH_Add_Task(button_reading, 0, 1);
+
+		SCH_Add_Task(input_process, 0, 1);
+		SCH_Add_Task(fsm_control_mode, 0, 2);
+		SCH_Add_Task(run_Auto, 0, 25);
+		SCH_Add_Task(run_Config, 0, 5);
+		SCH_Add_Task(run_Reset, 0, 5);
+		SCH_Add_Task(run_Manual, 0, 5);
+		SCH_Add_Task(signal_config,0,10);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //SCH_Add_Task(button_reading,0,10);
-  //SCH_Add_Task(fsm_for_input_processing,0,10);
-  //SCH_Add_Task(blinks_in_LED(0), 10, 500);
-  while (1)
-  {
+	  while (1)
+	  {
+		  	//  run_Auto();
+		  SCH_Dispatch_Tasks();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+	  }
   /* USER CODE END 3 */
 }
 
@@ -235,49 +251,55 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(B2_GPIO_Port, B2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, A2_Pin|B1_Pin|B2_Pin|A1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, B1_Pin|A1_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : LED_RED_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_RED_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(A2_GPIO_Port, A2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : A2_Pin B1_Pin B2_Pin A1_Pin */
-  GPIO_InitStruct.Pin = A2_Pin|B1_Pin|B2_Pin|A1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : BUTTON_1_Pin BUTTON_2_Pin */
-  GPIO_InitStruct.Pin = BUTTON_1_Pin|BUTTON_2_Pin;
+  /*Configure GPIO pins : BUTTON_4_Pin BUTTON_1_Pin BUTTON_3_Pin BUTTON_2_Pin */
+  GPIO_InitStruct.Pin = BUTTON_4_Pin|BUTTON_1_Pin|BUTTON_3_Pin|BUTTON_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : B2_Pin */
+  GPIO_InitStruct.Pin = B2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(B2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : B1_Pin A1_Pin */
+  GPIO_InitStruct.Pin = B1_Pin|A1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : BUTTON_3_Pin BUTTON_4_Pin */
-  GPIO_InitStruct.Pin = BUTTON_3_Pin|BUTTON_4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  /*Configure GPIO pin : A2_Pin */
+  GPIO_InitStruct.Pin = A2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(A2_GPIO_Port, &GPIO_InitStruct);
 
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim ) {
-	//SCH_Update() ;
-	button_reading();
-	fsm_for_input_processing();
-}
+void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
+
+	if(htim -> Instance == TIM2 ){
+    SCH_Update();
+     }
+ }
 /* USER CODE END 4 */
 
 /**

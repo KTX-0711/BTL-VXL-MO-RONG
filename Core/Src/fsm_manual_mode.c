@@ -9,9 +9,11 @@
 uint8_t C = 0;
 void run_Manual(){
 
-	if(CheckButton(1)){
 
-		turn_off();
+	 if(State  != MANUAL_MODE) return;
+
+	if(CheckButton(1) || CheckButton_1s(1)){
+
 
 		if(C == 0){
 			LED_display_NS(3);
@@ -38,6 +40,9 @@ void run_Manual(){
 			LED_display_EW(3);
 
 		}
+
+
+
 
 	 C = (C+1)%4;
 	}

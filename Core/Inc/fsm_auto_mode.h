@@ -21,7 +21,7 @@ extern int NS_time;
 extern int EW_time;
 
 void run_Auto();
-
+void run_Pedestrian();
 
 
 #endif /* INC_FSM_AUTO_MODE_H_ */

@@ -21,7 +21,8 @@ void fsm_control_mode();
      CONFIG_YELLOW_MODE,
      CONFIG_GREEN_MODE,
      MANUAL_MODE,
-     RESET_MODE
+     RESET_MODE,
+	 PEDESTIAN_MODE
  };
 
  extern enum State_Mode State;

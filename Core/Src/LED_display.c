@@ -7,12 +7,18 @@
 
 #include "main.h"
 uint8_t count = 0;
-void turn_off(){
+void turn_off_NS(){
 	HAL_GPIO_WritePin(A1_GPIO_Port, A1_Pin, RESET );
 	HAL_GPIO_WritePin(B1_GPIO_Port, B1_Pin, RESET );
+
+}
+void turn_off_EW(){
+	HAL_GPIO_WritePin(A2_GPIO_Port, A2_Pin, RESET);
+    HAL_GPIO_WritePin(B2_GPIO_Port, B2_Pin, RESET);
+
 }
 void LED_display_NS(int count){
-	    turn_off();
+	    turn_off_NS();
 		HAL_GPIO_WritePin(A1_GPIO_Port, A1_Pin, (count%2) ? SET : RESET );
 		HAL_GPIO_WritePin(B1_GPIO_Port, B1_Pin, (count/2) ? SET : RESET );
 		count++;
@@ -21,7 +27,7 @@ void LED_display_NS(int count){
 }
 
 void LED_display_EW(int count){
-     	turn_off();
+     	turn_off_EW();
 		HAL_GPIO_WritePin(A2_GPIO_Port, A2_Pin, (count%2) ? SET : RESET );
 		HAL_GPIO_WritePin(B2_GPIO_Port, B2_Pin, (count/2) ? SET : RESET );
 		count++;

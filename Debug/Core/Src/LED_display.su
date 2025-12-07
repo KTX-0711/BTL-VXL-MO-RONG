@@ -1,2 +1,4 @@
-LED_display.c:10:6:turn_off	8	static
-LED_display.c:14:6:blinks_in_LED	16	static
+LED_display.c:10:6:turn_off_NS	8	static
+LED_display.c:15:6:turn_off_EW	8	static
+LED_display.c:20:6:LED_display_NS	16	static
+LED_display.c:29:6:LED_display_EW	16	static

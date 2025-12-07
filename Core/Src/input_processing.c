@@ -7,14 +7,14 @@
 
 #include "main.h"
 enum ButtonState { BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSED_MORE_THAN_1_SECOND };
-
+#define NO_OF_BUTTONS 4
 static enum ButtonState buttonState[NO_OF_BUTTONS] = {BUTTON_RELEASED, BUTTON_RELEASED, BUTTON_RELEASED};
 static int checkButton[NO_OF_BUTTONS] = {0};      // Cờ nhấn dứt khoát
 static int checkButton_1s[NO_OF_BUTTONS] = {0};   // Cờ nhấn giữ
 
 static int counter_for_long_press[NO_OF_BUTTONS] = {0};
 
-#define TIME_FOR_LONG_PRESS  50  // 100 * 10ms = 1s (Thời gian chờ để bắt đầu auto-repeat)
+#define TIME_FOR_LONG_PRESS  100  // 100 * 10ms = 1s (Thời gian chờ để bắt đầu auto-repeat)
 #define TIME_FOR_AUTO_REPEAT 20   // 20 * 10ms = 200ms (Tốc độ nhảy số khi giữ nút - nên để nhanh hơn 1s)
 
 void input_processing(int idx){

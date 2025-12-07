@@ -1,73 +1,56 @@
 /*
  * fsm_control_mode.c
- *
- *  Created on: Nov 22, 2025
- *      Author: admin
  */
+
 #include "main.h"
 
-uint8_t State = AUTO_MODE;
+enum State_Mode State = AUTO_MODE;
+uint8_t prev;
+void fsm_control_mode() {
+    switch (State) {
+        case AUTO_MODE:
+           // display_LCD_Mode("AUTO MODE", -1);
+            if (CheckButton(0)) {
+                State = CONFIG_RED_MODE;
+            }
+            break;
 
-void fsm_control_mode(){
+        case CONFIG_RED_MODE:
+            //display_LCD_Mode("CONFIG RED", -1);
+            if (CheckButton(0)) {
+                State = CONFIG_YELLOW_MODE;
+            }
+            break;
 
-	switch (State){
+        case CONFIG_YELLOW_MODE:
+           // display_LCD_Mode("CONFIG YELLOW", -1);
+            if (CheckButton(0)) {
+                State = CONFIG_GREEN_MODE;
+            }
+            break;
 
-	case AUTO_MODE:
+        case CONFIG_GREEN_MODE:
+            //display_LCD_Mode("CONFIG GREEN", -1);
+            if (CheckButton(0)) {
+                State = MANUAL_MODE;
+            }
+            break;
 
-		if(CheckButton(0)){
-			State = CONFIG_RED_MODE;
-			run_Auto();
-		}
+        case MANUAL_MODE:
+            display_LCD_Mode("MANUAL", -1);
+            if (CheckButton(0)) {
+                State = AUTO_MODE;  // Reset về AUTO
+            }
+            break;
 
-			  break;
+        case RESET_MODE:
+            if (CheckButton_1s(0)) {
+                State = AUTO_MODE;
+            }
+            break;
 
-	case CONFIG_RED_MODE:
-
-			if(CheckButton(0)){
-				State = CONFIG_YELLOW_MODE;
-				//run_Config(0);
-			}
-				break;
-
-	case CONFIG_YELLOW_MODE:
-
-				if(CheckButton(0)){
-					State = CONFIG_GREEN_MODE;
-					//run_Config(1);
-				}
-					break;
-
-	case CONFIG_GREEN_MODE:
-
-				if(CheckButton(0)){
-					State = MANUAL_MODE;
-				//	run_Config(2);
-				}
-					break;
-
-	case MANUAL_MODE:
-
-			if(CheckButton(0)){
-				State = RESET_MODE;
-				// run_Manual();
-			}
-				break;
-
-	case RESET_MODE:
-			if(CheckButton(0)){
-				State = AUTO_MODE;
-			//	run_Reset();
-			}
-			break;
-
-
-	}
-
-	if(CheckButton(2)){
-
-		State = AUTO_MODE;
-
-	}
-
+        default:
+            State = AUTO_MODE;
+            break;
+    }
 }
-

@@ -9,8 +9,8 @@
 #define INC_LCD_DISPLAY_H_
 
 
-void display_LCD_NS(char* str,uint8_t time);
-void display_LCD_EW(char* str,uint8_t time);
+void display_LCD_NS(char *labelNS, int timeNS, char *labelEW, int timeEW);
+void display_LCD_Mode(char *label, int time);
 
 
 

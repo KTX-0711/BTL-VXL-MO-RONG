@@ -1,0 +1,2 @@
+LCD_display.c:19:6:display_LCD_NS	32	static
+LCD_display.c:48:6:display_LCD_Mode	40	static

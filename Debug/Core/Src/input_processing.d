@@ -4,7 +4,7 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h \
- ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h \
+ ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h \
  ../Drivers/CMSIS/Include/core_cm3.h \
  ../Drivers/CMSIS/Include/cmsis_version.h \
  ../Drivers/CMSIS/Include/cmsis_compiler.h \
@@ -24,7 +24,11 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/scheduler.h ../Core/Inc/main.h ../Core/Inc/input_reading.h \
+ ../Core/Inc/i2c_lcd.h ../Core/Inc/scheduler.h ../Core/Inc/main.h \
+ ../Core/Inc/fsm_auto_mode.h ../Core/Inc/fsm_control_mode.h \
+ ../Core/Inc/fsm_reset_mode.h ../Core/Inc/fsm_config_mode.h \
+ ../Core/Inc/fsm_manual_mode.h ../Core/Inc/LED_display.h \
+ ../Core/Inc/LCD_display.h ../Core/Inc/input_reading.h \
  ../Core/Inc/input_processing.h
 
 ../Core/Inc/main.h:
@@ -39,7 +43,7 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
 
 ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:
 
-../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h:
+../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h:
 
 ../Drivers/CMSIS/Include/core_cm3.h:
 
@@ -79,9 +83,25 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 
+../Core/Inc/i2c_lcd.h:
+
 ../Core/Inc/scheduler.h:
 
 ../Core/Inc/main.h:
+
+../Core/Inc/fsm_auto_mode.h:
+
+../Core/Inc/fsm_control_mode.h:
+
+../Core/Inc/fsm_reset_mode.h:
+
+../Core/Inc/fsm_config_mode.h:
+
+../Core/Inc/fsm_manual_mode.h:
+
+../Core/Inc/LED_display.h:
+
+../Core/Inc/LCD_display.h:
 
 ../Core/Inc/input_reading.h:
 
